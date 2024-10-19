@@ -5,6 +5,7 @@ using SmartParking.BusinessLogic.Queries.CarInfoQueries.GetEnteringCarInfo;
 using SmartParking.BusinessLogic.Queries.DeleteFromParkingPlacesByPlate;
 using SmartParking.BusinessLogic.Queries.GetCarSizeFromDbByPlate;
 using SmartParking.BusinessLogic.Queries.GetPlate;
+using SmartParking.DataAccess.Enums;
 
 namespace SmartParking.WebApi.Controllers;
 
@@ -43,6 +44,17 @@ public class CarInfoController(CommandInvoker commandInvoker) : ControllerBase
             });
         }
 
+        //if (!string.Equals(result.CarSize, CarSize.ExtraLarge.ToString()))
+        //{
+        //    return Ok(new
+        //    {
+        //        addCarInDb.ParkingArea,
+        //        addCarInDb.CarSize,
+        //        plateNumber.PlateNumber,
+        //        error = (string)null
+        //    });
+        //}
+
         var addCarInDb = await commandInvoker.Invoke(
             new AddCarInDbRequest 
             { 
@@ -72,6 +84,9 @@ public class CarInfoController(CommandInvoker commandInvoker) : ControllerBase
                 PlateNumber = plateNumber.PlateNumber 
             });
 
-        return Ok();
+        return Ok(new
+        {
+            Message = (string)"Car has left the parking"
+        });
     }
 }

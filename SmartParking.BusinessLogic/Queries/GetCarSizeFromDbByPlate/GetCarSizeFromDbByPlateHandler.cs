@@ -30,29 +30,52 @@ public class GetCarSizeFromDbByPlateHandler(IApplicationDbContext context)
             if (string.Equals(carSizeInDb, CarSize.Small.ToString()))
             {
                 if (parkingPlacesAFreePlacese > 0)
+                {
+                    var parking = context.ParkingPlaces.SingleOrDefault(x => x.PlaceName == "AreaA");
+                    if (parking != null)
+                    {
+                        parking.Count += 1;
+                        context.SaveChanges();
+                    }
                     return new GetCarSizeFromDbByPlateResponse
                     {
                         FoundInDb = true,
                         CarSize = carSizeInDb,
                         ParkingArea = "Parking Area A"
                     };
+                }
 
                 if (parkingPlacesBFreePlacese > 0)
+                {
+                    var parking = context.ParkingPlaces.SingleOrDefault(x => x.PlaceName == "AreaB");
+                    if (parking != null)
+                    {
+                        parking.Count += 1;
+                        context.SaveChanges();
+                    }
                     return new GetCarSizeFromDbByPlateResponse
                     {
                         FoundInDb = true,
                         CarSize = carSizeInDb,
                         ParkingArea = "Parking Area B"
                     };
+                }
 
                 if (parkingPlacesCFreePlacese > 0)
+                {
+                    var parking = context.ParkingPlaces.SingleOrDefault(x => x.PlaceName == "AreaC");
+                    if (parking != null)
+                    {
+                        parking.Count += 1;
+                        context.SaveChanges();
+                    }
                     return new GetCarSizeFromDbByPlateResponse
                     {
                         FoundInDb = true,
                         CarSize = carSizeInDb,
                         ParkingArea = "Parking Area C"
                     };
-
+                }
                 return new GetCarSizeFromDbByPlateResponse
                 {
                     FoundInDb = true,
@@ -65,20 +88,36 @@ public class GetCarSizeFromDbByPlateHandler(IApplicationDbContext context)
             {
 
                 if (parkingPlacesBFreePlacese > 0)
+                {
+                    var parking = context.ParkingPlaces.SingleOrDefault(x => x.PlaceName == "AreaB");
+                    if (parking != null)
+                    {
+                        parking.Count += 1;
+                        context.SaveChanges();
+                    }
                     return new GetCarSizeFromDbByPlateResponse
                     {
                         FoundInDb = true,
                         CarSize = carSizeInDb,
                         ParkingArea = "Parking Area B"
                     };
+                }
 
                 if (parkingPlacesCFreePlacese > 0)
+                {
+                    var parking = context.ParkingPlaces.SingleOrDefault(x => x.PlaceName == "AreaC");
+                    if (parking != null)
+                    {
+                        parking.Count += 1;
+                        context.SaveChanges();
+                    }
                     return new GetCarSizeFromDbByPlateResponse
                     {
                         FoundInDb = true,
                         CarSize = carSizeInDb,
                         ParkingArea = "Parking Area C"
                     };
+                }
 
                 return new GetCarSizeFromDbByPlateResponse
                 {
@@ -92,13 +131,20 @@ public class GetCarSizeFromDbByPlateHandler(IApplicationDbContext context)
             {
 
                 if (parkingPlacesCFreePlacese > 0)
+                {
+                    var parking = context.ParkingPlaces.SingleOrDefault(x => x.PlaceName == "AreaC");
+                    if (parking != null)
+                    {
+                        parking.Count += 1;
+                        context.SaveChanges();
+                    }
                     return new GetCarSizeFromDbByPlateResponse
                     {
                         FoundInDb = true,
                         CarSize = carSizeInDb,
                         ParkingArea = "Parking Area C"
                     };
-
+                }
                 return new GetCarSizeFromDbByPlateResponse
                 {
                     FoundInDb = true,
